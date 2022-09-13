@@ -55,7 +55,7 @@ function draw() {
   for (let i = 0; i < guests.length; i++) {
     for (const p of guests[i].clickHistory) {
       fill(guests[i].color);
-      ellipse(p.x, p.y, 300, 300);
+      ellipse(p.x, p.y, 100, 100);
     }
   }
 
@@ -66,7 +66,7 @@ function draw() {
     ellipse(p.x, p.y, 100, 100);
   }
 
-  fill("orange");
+  fill("black");
   textSize(30);
   text(shared.timer, width / 2, 40);
 }
