@@ -1,0 +1,17 @@
+html, body {
+    margin: 0;
+    padding: 0;
+  }
+  canvas {
+    display: block;
+  }
+
+img {
+    position: absolute;
+    height: 700px;
+
+    top: 50px;
+    left: 150px;
+
+}
+
