@@ -49,11 +49,11 @@ function draw() {
         }
     }
 
-    // draw this guests clicks
-    for (const p of me.clickHistory) {
-        fill(me.color);
-        ellipse(p.x, p.y, 80, 80);
-      }
+    // // draw this guests clicks
+    // for (const p of me.clickHistory) {
+    //     fill(me.color);
+    //     ellipse(p.x, p.y, 80, 80);
+    //   }
 }
 
 
