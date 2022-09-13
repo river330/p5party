@@ -66,7 +66,7 @@ function draw() {
     ellipse(p.x, p.y, 100, 100);
   }
 
-  fill("black");
+  fill("orange");
   textSize(30);
   text(shared.timer, width / 2, 40);
 }
