@@ -1,10 +1,15 @@
 let bg;
+let me;
+let guests;
+
+// let colorPicker = document.getElementById("fontcolor");
 
 function preload(){
     partyConnect("wss://deepstream-server-1.herokuapp.com", "rr_flower-painter", "main1");
     me = partyLoadMyShared({ 
+        
         clickHistory: [],
-        // color: color(random(255), random(255), random(255)).toString(),
+        color: "red",
     });
     guests = partyLoadGuestShareds();
 }
@@ -12,34 +17,42 @@ function preload(){
 function setup() {
 //   bg = loadImage('assets/flower.jpg');
   createCanvas(800, 800);
+
+  button = select("#save-image");
+  button.mousePressed(saveJPG);
+    
 }
 
 function draw() {
   background("white");
   noStroke();
 
+  getColor();
+
     // draw each guests cursor
-    for (const p of guests) {
-        fill("blue");
-        ellipse(p.x, p.y, 30, 30);
-      }
+    for (let i = 0; i < guests.length; i++) {
+        for (const p of guests) {
+        fill(guests[i].color);
+        ellipse(p.x, p.y, 60, 60);
+        }
+    }
     
       // mark this guests cursor
-      fill("blue");
-      ellipse(me.x, me.y, 30, 30);
+      fill(me.color);
+      ellipse(me.x, me.y, 60, 60);
 
     // draw this guests clicks
     for (let i = 0; i < guests.length; i++) {
         for (const p of guests[i].clickHistory) {
-          fill("yellow");
-          ellipse(p.x, p.y, 50, 50);
+          fill(guests[i].color);
+          ellipse(p.x, p.y, 70, 70);
         }
     }
 
     // draw this guests clicks
     for (const p of me.clickHistory) {
-        fill("blue");
-        ellipse(p.x, p.y, 50, 50);
+        fill(me.color);
+        ellipse(p.x, p.y, 80, 80);
       }
 }
 
@@ -67,3 +80,15 @@ function keyPressed() {
     return false;
   }
 }
+
+function getColor(){
+    me.color = document.getElementById("fontcolor").value.toString();
+}
+
+function saveJPG() {
+    console.log("saving")
+     save();
+     console.log("saved...?") 
+    
+  } 
+

@@ -4,14 +4,34 @@ html, body {
   }
   canvas {
     display: block;
+    border: 2px solid black;
   }
 
 img {
     position: absolute;
     height: 700px;
 
-    top: 50px;
+    top: 80px;
     left: 150px;
 
 }
+.top-bar {
 
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    width: 800px;
+}
+.color-selector {
+    font-family: Helvetica, sans-serif;
+}
+
+input {
+  margin: 10px;
+}
+
+button {
+    height: 30px;
+}

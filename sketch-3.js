@@ -25,13 +25,15 @@ function setup() {
   if (partyIsHost()) {
     partySetShared(shared,{  
       timer: 30 });
-  }
+  } 
 }
 
 function mousePressed(e) {
   me.x = mouseX;
   me.y = mouseY;
   me.clickHistory.push({x: me.x, y:me.y});
+
+ 
 }
 
 function draw() {
@@ -83,5 +85,7 @@ function keyPressed() {
     return false;
   }
 }
+
+
 
 
