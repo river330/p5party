@@ -62,11 +62,11 @@ function draw() {
   }
 
 
-  // draw this guests dots
-  for (const p of me.clickHistory) {
-    fill(me.color);
-    ellipse(p.x, p.y, 100, 100);
-  }
+  // // draw this guests dots
+  // for (const p of me.clickHistory) {
+  //   fill(me.color);
+  //   ellipse(p.x, p.y, 100, 100);
+  // }
 
   fill("black");
   textSize(30);
