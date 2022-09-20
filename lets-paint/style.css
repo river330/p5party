@@ -67,6 +67,8 @@ button {
   font-size: 80px;
   color:rgb(174, 222, 90);
   -webkit-text-stroke: 1.2px black;
+  text-shadow: 2px 2px #000000;
+
 
 }
 
@@ -113,6 +115,8 @@ button {
 
   color:white;
   -webkit-text-stroke: 1px black;
+  text-shadow: 2px 2px #000000;
+
 }
 
 button {
