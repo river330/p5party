@@ -124,6 +124,9 @@ button {
 button#NextPage:hover{
   background-color: rgb(219, 236, 188);
 }
+button:hover{
+  background-color: rgb(219, 236, 188);
+}
 
 #StartButton, #NextPage {
   font-size:50px;
@@ -177,7 +180,7 @@ button#NextPage:hover{
 
 p {
   font-family: 'pp_mondwestregular';
-  font-size:35px;
+  font-size:25px;
   width: 50%;
 
   text-align: center;
