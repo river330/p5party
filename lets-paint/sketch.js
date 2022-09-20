@@ -53,6 +53,10 @@ function draw() {
     });
   });
 
+  for (const p of guests) {
+    ellipse(p.x, p.y, 5, 5);
+  }
+
   background(bg);
 }
 
@@ -94,6 +98,11 @@ function nextPage(){
 
   canvas = select(".content")
   canvas.style("display", "flex");
+}
+
+function mouseMoved(e) {
+  me.x = mouseX;
+  me.y = mouseY;
 }
 
 
