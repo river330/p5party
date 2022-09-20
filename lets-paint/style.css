@@ -65,7 +65,7 @@ button {
 
   font-family:'PP_NeueBit';
   font-size: 80px;
-  color:white;
+  color:rgb(174, 222, 90);
   -webkit-text-stroke: 1.2px black;
 
 }
@@ -88,11 +88,12 @@ button {
 .startscreen-content {
   width: 100%;
   height: 850px;
-  background-image: url("assets/flower-garden2.gif");
+  background-image: url("assets/pixel-garden.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
 
+  background-color: rgb(170, 223, 239);
   border: 2px solid black;
 
   z-index: 10;
