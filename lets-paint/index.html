@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<head>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<html>
+  <body>
+    <div class="instructions">
+      <div class="instructions-content">
+        <p class="header">Instructions</p>
+        <p>Each player is given their own color and is task to “paint” as much as the floor within 30 seconds by clicking anywhere on the board. Players are able to paint on top of other people’s colors by clicking on top of it. </p>
+        <button id="NextPage" class="button">PAINT TIME!</button>
+        </div>
+    </div> 
+    <div class="startscreen">
+      <div class="startscreen-content">
+        <p class="header">Let's Paint a Flower</p>
+        <button id="StartButton" class="button">Begin</button>
+      </div>
+    </div>  
+    <main class="content">
+        <div class="title">Let's Paint a Flower</div>
+        <div class="top-bar">
+          <div class=pen-tools>
+            <input type="color" id="color" value="#FF0000">
+            <input type="range" id="weight" min="50" max="100" value="50"/>
+            <div id="size">50</div>
+          </div>
+          <div class="canvas-tools">
+            <button id="clear-button" class="button">clear</button>
+            <button id="save-image" class="button">save jpg</button>
+          </div>
+        </div>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.4.1/lib/p5.js"></script>
+    <script src="assets/p5.party.js"></script>
+    <script src="sketch.js"></script>
+  </body>
+</html
