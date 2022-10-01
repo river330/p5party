@@ -56,6 +56,7 @@ function draw() {
   background("#5C3E2A");
   fill("red");
   noStroke();
+  angleMode(DEGREES)
 
   for (let row = 0; row < 20; row++) {
     for (let col = 0; col < 20; col++) {
@@ -69,6 +70,11 @@ function draw() {
     }
   }
   drawSheep();
+//   getAmount();
+
+  fill("white")
+  textSize(30)
+  text("XX/400", 20, 860);
 }
 
 
@@ -101,10 +107,15 @@ document.addEventListener("keyup", function(e){
         shared.grid[col][row] = false;
     }
 
+    
+    const count1 = shared.grid[col].filter(value => value === false).length;
+    console.log(count1); // 👉️ 3
+
 });
 
 function drawSheep(){
     push();
+
 
     for (const p of guests) {
         fill("gray");
