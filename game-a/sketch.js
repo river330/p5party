@@ -119,6 +119,7 @@ function gameOver() {
     createCanvas(900, 900);
     background("#5C3E2A");
     fill('white');
+    textStyle(CENTER);
     textStyle(BOLD);
     textSize(50);
     text("Congratulations! You WIN!", 450, 200);
@@ -126,6 +127,7 @@ function gameOver() {
   if (outOfTime == true) {
     createCanvas(900, 900);
     background("#5C3E2A");
+    textStyle(CENTER);
     fill('white');
     textStyle(BOLD);
     textSize(50);
