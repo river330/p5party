@@ -77,10 +77,15 @@ function draw() {
 
 function startingScreen() {
   createCanvas(900, 900);
-  background("pink");
-  fill('black');
-  text("Hello, welcome to our game", 200, 200);
-  text("Click anywhere to continue", 200, 320);
+  background("#add8e6");
+  fill('white');
+  textStyle(BOLD);
+  textSize(50);
+  textAlign(CENTER);
+  text("Welcome to", 450, 200);
+  text("BAH BAH GRASS", 450, 260);
+  textSize(30);
+  text("Click anywhere to continue", 450, 380);
   
 
 }
@@ -88,10 +93,16 @@ function startingScreen() {
 
 function instructScreen() {
   createCanvas(900, 900);
-    background("yellow");
+  background("#d8e6ad");
   fill('black');
-  text("These are instructions", 200, 200);
-  text("Click anywhere to continue", 200, 320);
+  textStyle(BOLD);
+  textSize(30);
+  textAlign(CENTER);
+  text("Using the A, S, W, D keys, move your sheep", 450, 200);
+  text("along the grass grid to eat the grass.", 450, 230);
+  text("Goal of the game is to eat all the grass", 450, 270);
+  text("before the time in the bottom right finishes", 450, 300);
+  text("Click anywhere to continue", 450, 380);
   
 }
 
@@ -106,20 +117,26 @@ function mousePressed() {
 function gameOver() {
   if (shared.eaten === 400) {
     createCanvas(900, 900);
-    background("beige");
-    fill('black');
-    text("Congratulations! You WIN!", 200, 200);
+    background("#5C3E2A");
+    fill('white');
+    textStyle(BOLD);
+    textSize(50);
+    text("Congratulations! You WIN!", 450, 200);
   } 
   if (outOfTime == true) {
     createCanvas(900, 900);
-    background("beige");
-    fill('black');
-    text("You're out of time... You LOSE!", 200, 200);
+    background("#5C3E2A");
+    fill('white');
+    textStyle(BOLD);
+    textSize(50);
+    text("You're out of time... You LOSE!", 450, 200);
   }
 }
 
 
 function gameOn() {
+  textAlign(LEFT);
+  textStyle(NORMAL);
   createCanvas(900, 900);
   background("#5C3E2A");
   fill("red");
