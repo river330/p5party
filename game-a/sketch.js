@@ -8,13 +8,18 @@ function preload() {
     "main"
   );
 
-  shared = partyLoadShared("shared", { grid: [] });
+  shared = partyLoadShared("shared", { 
+    grid: [],
+    eaten: 0,
+    gameMode: 0,
+    timer: 0, 
+  });
   me = partyLoadMyShared();
   guests = partyLoadGuestShareds();
 }
 
 function setup() {
-    partyToggleInfo(true);
+  partyToggleInfo(true);
   createCanvas(800, 900);
 
   console.log("partyIsHost()", partyIsHost());
@@ -23,6 +28,10 @@ function setup() {
 
   if (partyIsHost()) {
     console.log("i'm host, init the grid");
+    shared.eaten = 0;
+    shared.timer = 90;
+    setInterval(timerFunc, 1000);
+    shared.gameMode = 0;
     shared.grid = [];
 
     for (let col = 0; col < 20; col++) {
@@ -53,6 +62,65 @@ function setup() {
 }
 
 function draw() {
+  switch (shared.gameMode) {
+    case 0:
+      startingScreen();
+      break;
+    case 1:
+      instructScreen();
+      break;
+    case 2:
+      gameOn();
+  }
+}
+
+
+function startingScreen() {
+  createCanvas(900, 900);
+  background("pink");
+  fill('black');
+  text("Hello, welcome to our game", 200, 200);
+  text("Click anywhere to continue", 200, 320);
+  
+
+}
+
+
+function instructScreen() {
+  createCanvas(900, 900);
+    background("yellow");
+  fill('black');
+  text("These are instructions", 200, 200);
+  text("Click anywhere to continue", 200, 320);
+  
+}
+
+function mousePressed() {
+  if (shared.gameMode == 0) {
+    shared.gameMode = 1;
+  } else if (shared.gameMode == 1){
+    shared.gameMode = 2;
+  }
+}
+
+function gameOver() {
+  if (shared.eaten === 400) {
+    createCanvas(900, 900);
+    background("beige");
+    fill('black');
+    text("Congratulations! You WIN!", 200, 200);
+  } 
+  if (outOfTime == true) {
+    createCanvas(900, 900);
+    background("beige");
+    fill('black');
+    text("You're out of time... You LOSE!", 200, 200);
+  }
+}
+
+
+function gameOn() {
+  createCanvas(900, 900);
   background("#5C3E2A");
   fill("red");
   noStroke();
@@ -65,34 +133,42 @@ function draw() {
     //   //   console.log(col, row);
       if (shared.grid[col][row]) {
         fill("#27F379");
-        rect(x, y, 40 - 2, 40 - 2);
+        rect(x+50, y+50, 40 - 2, 40 - 2);
       }
     }
   }
   drawSheep();
-//   getAmount();
+  // getAmount();
 
-  fill("white")
-  textSize(30)
-  text("XX/400", 20, 860);
+  fill("white");
+  textSize(20);
+  text("Grass eaten: " + shared.eaten, 20, 880);
+  countDown();
+
+  //if winner(gridSize *2 or timer runs out):
+  // if (shared.eaten == gridSize*gridSize) {
+  //   won = true;
+  //   shared.gameMode = 3;
+  // }
 }
 
 
-document.addEventListener("keyup", function(e){ 
-    if (e.code === 'KeyW') {
+
+function keyPressed() {
+  if (keyCode === 87) {
         me.sheep.y = me.sheep.y - 1;
         console.log(me.sheep)
 
     }
-    if (e.code === 'KeyS') {
+    if (keyCode === 83) {
         me.sheep.y = me.sheep.y + 1;
         console.log(me.sheep)
     }
-    if (e.code === 'KeyA') {
+    if (keyCode === 65) {
         me.sheep.x = me.sheep.x - 1;
         console.log(me.sheep)
     }
-    if (e.code === 'KeyD') {
+    if (keyCode === 68) {
         me.sheep.x = me.sheep.x + 1;
         console.log(me.sheep)
     }
@@ -102,16 +178,11 @@ document.addEventListener("keyup", function(e){
     constrain(col, 0, 19);
     constrain(row, 0, 19);
     if (shared.grid[col][row] === false) {
-        // shared.grid[col][row] = true;
-      } else {
+    } else {
         shared.grid[col][row] = false;
     }
-
-    
-    const count1 = shared.grid[col].filter(value => value === false).length;
-    console.log(count1); // 👉️ 3
-
-});
+    getTotal();
+};
 
 function drawSheep(){
     push();
@@ -119,26 +190,70 @@ function drawSheep(){
 
     for (const p of guests) {
         fill("gray");
-        rect(p.sheep.x * 40 + 1, p.sheep.y * 40 + 1, 40 - 2, 40 - 2);
+        rect(p.sheep.x * 40 + 51, p.sheep.y * 40 + 51, 40 - 2, 40 - 2);
         fill("black");
-    rect(p.sheep.x * 40 + 9, p.sheep.y * 40 + 29, 25 - 2, 25 - 2);
+    rect(p.sheep.x * 40 + 59, p.sheep.y * 40 + 79, 25 - 2, 25 - 2);
     fill("black");
-    rect(p.sheep.x * 40 + 3, p.sheep.y * 40 + 32, 10 - 2, 10 - 2);
-    rect(p.sheep.x * 40 + 29, p.sheep.y * 40 + 32, 10 - 2, 10 - 2);
+    rect(p.sheep.x * 40 + 53, p.sheep.y * 40 + 82, 10 - 2, 10 - 2);
+    rect(p.sheep.x * 40 + 79, p.sheep.y * 40 + 82, 10 - 2, 10 - 2);
 
       }
 
     fill("#F3F3F3");
-    rect(me.sheep.x * 40 + 1, me.sheep.y * 40 + 1, 40 - 2, 40 - 2);
+    rect(me.sheep.x * 40 + 51, me.sheep.y * 40 + 51, 40 - 2, 40 - 2);
     fill("black");
-    rect(me.sheep.x * 40 + 9, me.sheep.y * 40 + 29, 25 - 2, 25 - 2);
+    rect(me.sheep.x * 40 + 59, me.sheep.y * 40 + 79, 25 - 2, 25 - 2);
     fill("black");
-    rect(me.sheep.x * 40 + 3, me.sheep.y * 40 + 32, 10 - 2, 10 - 2);
-    rect(me.sheep.x * 40 + 29, me.sheep.y * 40 + 32, 10 - 2, 10 - 2);
+    rect(me.sheep.x * 40 + 53, me.sheep.y * 40 + 82, 10 - 2, 10 - 2);
+    rect(me.sheep.x * 40 + 79, me.sheep.y * 40 + 82, 10 - 2, 10 - 2);
     // console.log("sheep is drawn");
 
 }
 
+function timerFunc() {
+  if (shared.timer > 0) {
+    shared.timer--;
+  }
+}
+
+
+function countDown() {
+  if (shared.timer / 60 >= 1) {
+    timerValue_new = shared.timer - 60;
+    if (timerValue_new < 10) {
+      text("1:0" + timerValue_new, 840, 880);
+    } else {
+      text("1:" + timerValue_new, 840, 880);
+    }
+  } else {
+    if (shared.timer >= 60) {
+      text("1:" + shared.timer, 840, 880);
+    }
+    if (shared.timer >= 10) {
+      text("0:" + shared.timer, 840, 880);
+    }
+    if (shared.timer < 10) {
+      text("0:0" + shared.timer,840, 880);
+    }
+    if (shared.timer == 0) {
+      console.log("game over");
+      outOfTime = true;
+      gameOver();
+    }
+  }
+}
+
+function getTotal(){
+  shared.eaten = 0
+
+  for (let row = 0; row < 20; row++) {
+    for (let col = 0; col < 20; col++) {
+       if (shared.grid[col][row] === false){ 
+        shared.eaten++; // add one to the counter
+      }
+    }
+  }
+}
 
 
 
