@@ -153,7 +153,6 @@ function gameOn() {
     } else {
         shared_state = false;
     }
-
 }
 
 function gameOver() {
@@ -235,7 +234,7 @@ function gameTimer() {
         if (shared_time.gameTimer === 0) {
             console.log("Game Over: timer ran out");
             gameOver();
-            
+
         }
     }
 }
