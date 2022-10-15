@@ -146,7 +146,6 @@ function gameOn() {
 
     replantingGrass();
 
-    // gameOver trigger
     if (shared.eaten == gridSize * gridSize - 1) {
         shared_state = true;
         console.log("Game over: all grass eaten, you win");
@@ -234,8 +233,9 @@ function gameTimer() {
         }
     
         if (shared_time.gameTimer === 0) {
-            console.log("Game Over: timer ran out")
-            gameState = "GAMEOVER";
+            console.log("Game Over: timer ran out");
+            gameOver();
+            
         }
     }
 }
